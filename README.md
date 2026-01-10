@@ -2,7 +2,7 @@
 
 A **Markdown-only** daily work log system designed for software engineers to track tasks, learnings, and communications efficiently using VSCode and Copilot Chat.
 
-<img src="assets/readme-chat.png" alt="Vault Tech Logs daily log" width="600" />
+<img src="assets/readme-chat.png" alt="Vault Tech Logs daily log" />
 
 <br>
 
