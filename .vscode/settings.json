@@ -1,0 +1,6 @@
+// used to copy images to a structured folder within the assets directory
+{
+    "markdown.copyFiles.destination": {
+        "/entries/**/*": "/assets/${documentBaseName}/${documentBaseName}-${isoTime}.${fileExtName}"
+    },
+}

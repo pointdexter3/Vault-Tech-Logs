@@ -1,0 +1,21 @@
+
+// THIS FILE DOES NOT WORK. INSTRUCTIONS BELOW.
+// 
+// keybindings doesn't work at the workplace level like settings 
+//  (needs to be global vscode)
+
+[
+  // navigate to global keybindings (type `Command+K Command+S`), 
+  //  then click the file icon in the upper right to open the keybindings.json file
+  // 
+  // COPY AND PASTE THESE TWO BLOCKS INTO THE KEYBINDINGS.JSON FILE
+  {
+    "key": "cmd+enter",
+    "command": "markdown.showPreview"
+  },
+  {
+    "key": "cmd+enter",
+    "command": "workbench.action.reopenTextEditor",
+    "when": "activeCustomEditorId == 'vscode.markdown.preview.editor'"
+  }
+]
