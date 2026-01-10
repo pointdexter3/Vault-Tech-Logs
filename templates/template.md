@@ -102,3 +102,6 @@ A new daily file contains the date header and a full commented category skeleton
 
 ## ⛔ Blockers
 [Reminder 2026-01-11] [MISSING_TICKET] Waiting on access approval from IT.
+
+Notes:
+- Tags are limited to `[Due YYYY-MM-DD]`, `[Reminder YYYY-MM-DD]`, `[Completed YYYY-MM-DD]`, the Jira ticket link, and `[MISSING_TICKET]` when no ticket exists.

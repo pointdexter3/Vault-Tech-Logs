@@ -50,7 +50,7 @@ When the user provides task updates:
 - If the user provides a Jira browse URL like `https://yourcompany.atlassian.net/browse/PROJECTKEY-1234`, normalize it to `[PROJECTKEY-1234](https://yourcompany.atlassian.net/browse/PROJECTKEY-1234)`.
 - Never use the raw-URL-in-brackets form (forbidden): `[https://yourcompany.atlassian.net/browse/PROJECTKEY-1234]`.
 - If no ticket exists in a task, add `[MISSING_TICKET]`.
-- Tags are optional (except `[MISSING_TICKET]` when no Jira key exists).
-- Enforce tag ordering **only among tags present**: Due > Reminder > Completed > Ticket link > other tags.
+- Tags are limited to date tags (`[Due YYYY-MM-DD]`, `[Reminder YYYY-MM-DD]`, `[Completed YYYY-MM-DD]`), the Jira ticket link, and `[MISSING_TICKET]` when no Jira key exists.
+- Enforce tag ordering **only among tags present**: Due > Reminder > Completed > Ticket link (or `[MISSING_TICKET]` when no ticket exists).
 - Never invent or prepend `Due`/`Reminder`/`Completed`; only use bracketed date tags when the user explicitly provided the date.
 - Place tags at the start of the task line.

@@ -60,8 +60,10 @@ sorry, copilot cannot complete this task - limitation #1
   - `[KEY-123](https://yourcompany.atlassian.net/browse/KEY-123)`
 - If a task has no Jira key, add `[MISSING_TICKET]`.
 - Enforce tag order within each task:
-  1) Due, 2) Reminder, 3) Completed, 4) Ticket link, 5) other tags (including `[MISSING_TICKET]`).
-- Tags are optional; do not add tags the user did not provide, except `[MISSING_TICKET]` when no Jira key is present.
+  1) Due, 2) Reminder, 3) Completed, 4) Ticket link (or `[MISSING_TICKET]` when no Jira key is present).
+- Tags are limited to date tags (`[Due YYYY-MM-DD]`, `[Reminder YYYY-MM-DD]`, `[Completed YYYY-MM-DD]`), the Jira ticket link, and `[MISSING_TICKET]` when no Jira key is present.
+- Do not add any other bracket tags.
+- Do not add tags the user did not provide, except `[MISSING_TICKET]` when no Jira key is present.
 - Never insert bare `Due` / `Reminder` / `Completed` prefixes.
   - Only add a due tag if the user explicitly provided a due date, and it must be formatted exactly as `[Due YYYY-MM-DD]`.
   - Only add a reminder tag if the user explicitly provided a reminder date, and it must be formatted exactly as `[Reminder YYYY-MM-DD]`.

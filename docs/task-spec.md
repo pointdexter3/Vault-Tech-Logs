@@ -106,22 +106,21 @@ sorry, copilot cannot complete this task - limitation #1
 
 ### Tag Types
 
-Tags include:
+Tags are limited to:
 - Due dates: `[Due YYYY-MM-DD]`
 - Reminder dates: `[Reminder YYYY-MM-DD]`
 - Completed dates: `[Completed YYYY-MM-DD]`
 - Ticket links (as described above)
-- Other bracket tags: `[Some Tag]`
+- Ticket placeholder when no Jira key exists: `[MISSING_TICKET]`
 
 ### Tag Ordering (Strict)
 
-If a task contains multiple tags, enforce this exact ordering **among the tags present** (including any tags you add due to other rules like `[MISSING_TICKET]`):
+If a task contains multiple tags, enforce this exact ordering **among the tags present**:
 
 1. Due
 2. Reminder
 3. Completed
-4. Ticket link
-5. Other tags (including `[MISSING_TICKET]`)
+4. Ticket link, or `[MISSING_TICKET]` when no Jira key exists
 
 Notes:
 - Date tags include `Due`/`Reminder`/`Completed`. Date tags are optional.
