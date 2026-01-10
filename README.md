@@ -39,6 +39,13 @@ completed TKET-1234
 ```
 
 For images manually paste into the markdown file, the image will be inserted into the assets folder automatically (named by folder and timestamp)
+```md
+{
+    "markdown.copyFiles.destination": {
+        "/entries/**/*": "/assets/${documentBaseName}/${documentBaseName}-${isoTime}.${fileExtName}"
+    },
+}
+```
 
 <br>
 
