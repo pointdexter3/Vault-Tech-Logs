@@ -6,7 +6,8 @@ Rules:
 - In daily entries, categories must follow the order listed below.
 - Categories are hidden unless they contain tasks (comments do not render in preview).
 - Hidden category format (HTML comment): `<!-- <emoji> <Category Name> -->`
-- Active category format (heading line): `<emoji> <Category Name>`
+- Active category format (heading line): `## <emoji> <Category Name>`
+- Each active category header must be preceded by a single line containing exactly `<br>` followed by an empty line.
 
 ## Categories (in order)
 
@@ -30,8 +31,6 @@ Rules:
 A new daily file contains the date header and a full commented category skeleton (so you can quickly add tasks manually, while preview stays clean):
 
 # January 10, 2026
-
-
 
 <!-- 🛠️ Working On -->
 
@@ -57,7 +56,11 @@ A new daily file contains the date header and a full commented category skeleton
 
 
 
-<!-- ⚙ Vault Tech Enhancements -->
+<!-- ⚙ Vault Tech Enhancements (system improvements only) -->
+
+
+
+<!-- ⚙ Vault Tech Enhancements (system improvements to this repo/system only) -->
 
 
 
@@ -79,10 +82,14 @@ A new daily file contains the date header and a full commented category skeleton
 
 # January 10, 2026
 
+<br>
 
+## 🛠️ Working On
 
-🛠️ Working On
-Finish investigation of XYZ root cause. [MISSING_TICKET]
+[MISSING_TICKET] Finish investigation of XYZ root cause.
+
+[BDBN-0001](https://yourcompany.atlassian.net/browse/BDBN-0001) Implement Japan field mapping changes.
+
 
 
 
@@ -90,5 +97,8 @@ Finish investigation of XYZ root cause. [MISSING_TICKET]
 
 
 
-⛔ Blockers
-Waiting on access approval from IT. [Reminder 2026-01-11] [MISSING_TICKET]
+
+<br>
+
+## ⛔ Blockers
+[Reminder 2026-01-11] [MISSING_TICKET] Waiting on access approval from IT.

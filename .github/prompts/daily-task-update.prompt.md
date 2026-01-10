@@ -37,10 +37,11 @@ sorry, copilot cannot complete this task - limitation #1
 
 - Place tasks under exactly one category.
 - Categories must appear in the exact order defined in `templates/template.md`.
-- Category headers must have three empty lines above them.
 - Categories are hidden unless they contain tasks:
   - Hidden: `<!-- <emoji> <Category Name> -->`
-  - Active: `<emoji> <Category Name>`
+  - Active: `## <emoji> <Category Name>`
+- Insert a single line containing exactly `<br>` followed by an empty line immediately above each active category header.
+- Do not add `<br>` lines for commented categories.
 - Always keep the full category skeleton in the daily file:
   - Categories with tasks are active (uncommented).
   - Categories without tasks remain commented.
@@ -60,7 +61,12 @@ sorry, copilot cannot complete this task - limitation #1
 - If a task has no Jira key, add `[MISSING_TICKET]`.
 - Enforce tag order within each task:
   1) Due, 2) Reminder, 3) Completed, 4) Ticket link, 5) other tags (including `[MISSING_TICKET]`).
-- Place tags at the end of the first line of the task, separated by single spaces.
+- Tags are optional; do not add tags the user did not provide, except `[MISSING_TICKET]` when no Jira key is present.
+- Never insert bare `Due` / `Reminder` / `Completed` prefixes.
+  - Only add a due tag if the user explicitly provided a due date, and it must be formatted exactly as `[Due YYYY-MM-DD]`.
+  - Only add a reminder tag if the user explicitly provided a reminder date, and it must be formatted exactly as `[Reminder YYYY-MM-DD]`.
+  - Only add a completed tag if the user explicitly provided a completed date, and it must be formatted exactly as `[Completed YYYY-MM-DD]`.
+- Place tags at the start of the first line of the task, separated by single spaces.
 
 ## Output
 

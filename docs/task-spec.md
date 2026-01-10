@@ -44,9 +44,11 @@ sorry, copilot cannot complete this task - limitation #1
 
 ### Category Header Formatting
 
-- A category header is a single line with an emoji prefix, exactly matching the template’s category name.
-  - Example: `🛠️ Working On`
-- **Three empty lines** must appear immediately above each category header line.
+- An active (uncommented) category header is a Markdown H2 line with an emoji prefix, exactly matching the template’s category name.
+  - Example: `## 🛠️ Working On`
+- A single line containing exactly `<br>` followed by an empty line must appear immediately above each active category header line.
+  - Rationale: Markdown renderers collapse extra blank lines; `<br>` produces consistent visible spacing.
+- Do not add `<br>` lines for commented categories (comments should remain visually hidden in preview).
 - Category order in a daily file must follow the order in `templates/template.md`.
 
 ### Hidden / Commented Categories
@@ -63,7 +65,7 @@ sorry, copilot cannot complete this task - limitation #1
 
 - After the date header, include every category from `templates/template.md` as a commented header line.
 - Maintain category order exactly as in `templates/template.md`.
-- Ensure **three empty lines** immediately above each commented category line.
+- Do not include `<br>` lines in the skeleton (the skeleton is commented; `<br>` would render and create visible blank space).
 
 ## Tasks (Category Items)
 
@@ -73,9 +75,14 @@ sorry, copilot cannot complete this task - limitation #1
 
 - Tasks are **not** list items.
   - Do not prefix tasks with `-`, `*`, `1.`, etc.
+- Do not indent tasks; task text must start at the beginning of the line.
 - Each task must belong to exactly one category.
 - Separate tasks with **one empty line**.
-- If the user provides multiple tasks in a list format, convert each list entry into its own task paragraph, separated by one empty line.
+- If the user provides multiple tasks, create **one task per item** and separate them with one empty line.
+  - This includes:
+    - Markdown lists (bulleted or numbered)
+    - Plain newline-separated items (one task per non-empty line)
+    - “Category label” followed by multiple lines (each subsequent non-empty line is its own task)
 - Tasks may contain internal formatting (including lists) **only** if the user included those details inside the task.
 
 ## Tickets, Links, and Tags
@@ -86,6 +93,11 @@ sorry, copilot cannot complete this task - limitation #1
 - Convert every detected ticket key to a Markdown link using the base URL:
   - `https://yourcompany.atlassian.net/browse/`
   - Example: `BDBN-0001` → `[BDBN-0001](https://yourcompany.atlassian.net/browse/BDBN-0001)`
+- Also detect Jira browse URLs in the format `https://yourcompany.atlassian.net/browse/PROJECTKEY-1234`.
+  - Normalize them to the same Markdown link format:
+    - Example: `https://yourcompany.atlassian.net/browse/BDBN-0001` → `[BDBN-0001](https://yourcompany.atlassian.net/browse/BDBN-0001)`
+- Never use the raw-URL-in-brackets form:
+  - Forbidden: `[https://yourcompany.atlassian.net/browse/BDBN-0001]`
 
 ### Ticket Requirement
 
@@ -103,7 +115,7 @@ Tags include:
 
 ### Tag Ordering (Strict)
 
-Within a task, enforce this exact tag ordering:
+If a task contains multiple tags, enforce this exact ordering **among the tags present** (including any tags you add due to other rules like `[MISSING_TICKET]`):
 
 1. Due
 2. Reminder
@@ -111,9 +123,20 @@ Within a task, enforce this exact tag ordering:
 4. Ticket link
 5. Other tags (including `[MISSING_TICKET]`)
 
+Notes:
+- Date tags include `Due`/`Reminder`/`Completed`. Date tags are optional.
+- Never add `[Due ...]`, `[Reminder ...]`, or `[Completed ...]` unless the user explicitly provided the corresponding date.
+- Never add a bare `Due`/`Reminder`/`Completed` token; date tags must use the bracketed formats above.
+
+Examples:
+
+`[MISSING_TICKET] Investigate flaky integration test.`
+
+`[Due 2026-01-15] [MISSING_TICKET] Ship v1 rollout checklist.`
+
 ### Tag Placement (Deterministic)
 
-- Place tags at the **end of the first line** of the task, separated by single spaces.
+- Place tags at the **start of the first line** of the task, separated by single spaces.
 - Do not reorder the non-tag text of the task.
 
 ## Update Policy

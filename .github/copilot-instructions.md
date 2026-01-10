@@ -28,17 +28,29 @@ When the user provides task updates:
 3. Read today’s file (and optionally the most recent few entry files for context) but **only edit today’s file**.
 4. Apply updates with minimal diffs.
 
+## Parsing User Updates
+
+- If the user provides multiple tasks (bullets, numbers, or plain newline-separated items), create one task per item.
+- Separate tasks with exactly one empty line (per `docs/task-spec.md`).
+- Do not indent task lines.
+
 ## Formatting + Consistency
 
 - Treat `docs/task-spec.md` as the single source of truth.
 - Treat `templates/template.md` as the canonical category list and ordering.
 - Categories are hidden unless they contain tasks:
-  - Active: `🛠️ Working On`
+  - Active: `## 🛠️ Working On` (preceded by a `<br>` and an empty line)
   - Hidden: `<!-- 🛠️ Working On -->`
-- Three empty lines must appear above each category header/comment.
+- Insert a single line containing exactly `<br>` followed by an empty line immediately above each active category header.
+- Do not add `<br>` lines for commented categories.
 
 ## Tickets and Tags
 
-- Convert Jira keys `PROJECTKEY-1234` into ticket links using `https://yourcompany.atlassian.net/browse/`.
+- Convert Jira keys `PROJECTKEY-1234` into ticket links using `https://yourcompany.atlassian.net/browse/` in the Markdown link format `[KEY](url)`.
+- If the user provides a Jira browse URL like `https://yourcompany.atlassian.net/browse/PROJECTKEY-1234`, normalize it to `[PROJECTKEY-1234](https://yourcompany.atlassian.net/browse/PROJECTKEY-1234)`.
+- Never use the raw-URL-in-brackets form (forbidden): `[https://yourcompany.atlassian.net/browse/PROJECTKEY-1234]`.
 - If no ticket exists in a task, add `[MISSING_TICKET]`.
-- Enforce tag ordering: Due > Reminder > Completed > Ticket link > other tags.
+- Tags are optional (except `[MISSING_TICKET]` when no Jira key exists).
+- Enforce tag ordering **only among tags present**: Due > Reminder > Completed > Ticket link > other tags.
+- Never invent or prepend `Due`/`Reminder`/`Completed`; only use bracketed date tags when the user explicitly provided the date.
+- Place tags at the start of the task line.
