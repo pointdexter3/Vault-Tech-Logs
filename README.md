@@ -10,6 +10,7 @@ A **Markdown-only** daily work log system designed for software engineers to tra
 
 ## User flow:
 
+- select the Daily-Task-Update agent or reference the Daily-Task-Update promt
 - Copilot chat what you are working on, prefix with the category for better organization
 
 ### example usages:
